@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Test2</string>
+    <string name="hello_first_fragment">Enter the key of the node to be added to the XOR List</string>
+    <string name="next">Add Node</string>
+</resources>

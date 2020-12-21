@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.editTextNumber);
         String string = editText.getText().toString();
         System.out.println(string);
-        nodo.setText(string);
+        nodo.setText(string+"\n ----------\n XOR");
         nodo.setGravity(Gravity.CENTER);
         nodo.setBackgroundResource(R.drawable.rectangle);
         nodo.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));

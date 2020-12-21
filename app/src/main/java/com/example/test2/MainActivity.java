@@ -16,8 +16,12 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     Button button;
     LinearLayout listaView;
-    int num = 1;
+
     ArrayList<TextView> lista = new ArrayList<>();
+    String pasado = "0";
+    String pasado2 = "0";
+    String futuro = "0";
+    int cont = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +33,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        TextView nodo  = new TextView(this);
-        EditText editText = (EditText) findViewById(R.id.editTextNumber);
-        String string = editText.getText().toString();
-        System.out.println(string);
-        nodo.setText(string+"\n ----------\n XOR");
-        nodo.setGravity(Gravity.CENTER);
-        nodo.setBackgroundResource(R.drawable.rectangle);
-        nodo.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        lista.add(nodo);
-        listaView.addView(nodo);
+        if(pasado.equals("0")){
+            TextView nodo  = new TextView(this);
+            EditText editText = (EditText) findViewById(R.id.editTextNumber);
+            String string = editText.getText().toString();
+            System.out.println(string);
+            nodo.setText(string+"\n ----------\n"+ pasado+" XOR 0");
+            pasado = string;
+            nodo.setGravity(Gravity.CENTER);
+            nodo.setBackgroundResource(R.drawable.rectangle);
+            nodo.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            lista.add(nodo);
+            listaView.addView(nodo);
+        }
+        else{
+            TextView nodo  = new TextView(this);
+            EditText editText = (EditText) findViewById(R.id.editTextNumber);
+            String string = editText.getText().toString();
+            System.out.println(string);
+            nodo.setText(string+"\n ----------\n"+ pasado+" XOR 0");
+            nodo.setGravity(Gravity.CENTER);
+            nodo.setBackgroundResource(R.drawable.rectangle);
+            nodo.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            futuro = string;
+            lista.add(nodo);
+            lista.get(cont++).setText(pasado+"\n ----------\n"+ pasado2+" XOR "+futuro);
+            pasado2 = pasado;
+            pasado = string;
+            listaView.addView(nodo);
+        }
 
     }
 }

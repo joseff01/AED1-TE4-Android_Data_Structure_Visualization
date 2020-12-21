@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View v) {
         TextView nodo  = new TextView(this);
-        nodo.setText(String.valueOf(num++));
+        EditText editText = (EditText) findViewById(R.id.editTextNumber);
+        String string = editText.getText().toString();
+        System.out.println(string);
+        nodo.setText(string);
         nodo.setGravity(Gravity.CENTER);
         nodo.setBackgroundResource(R.drawable.rectangle);
         nodo.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));

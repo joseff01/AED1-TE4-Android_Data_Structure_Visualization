@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout listaView;
 
     ArrayList<TextView> lista = new ArrayList<>();
+    ArrayList<ImageView> listaflecha = new ArrayList<>();
     String pasado = "0";
     String pasado2 = "0";
     String futuro = "0";
@@ -33,35 +35,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View v) {
+        ImageView flecha = new ImageView(this);
+        flecha.setImageResource(R.drawable.arrowme);
+        flecha.setImageAlpha(0);
+        TextView nodo  = new TextView(this);
+
+        EditText editText = (EditText) findViewById(R.id.editTextNumber);
+        String string = editText.getText().toString();
+        System.out.println(string);
+        nodo.setText(string+"\n ----------\n"+ pasado+" XOR 0");
+
         if(pasado.equals("0")){
-            TextView nodo  = new TextView(this);
-            EditText editText = (EditText) findViewById(R.id.editTextNumber);
-            String string = editText.getText().toString();
-            System.out.println(string);
-            nodo.setText(string+"\n ----------\n"+ pasado+" XOR 0");
             pasado = string;
             nodo.setGravity(Gravity.CENTER);
             nodo.setBackgroundResource(R.drawable.rectangle);
             nodo.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             lista.add(nodo);
-            listaView.addView(nodo);
+            listaflecha.add(flecha);
         }
         else{
-            TextView nodo  = new TextView(this);
-            EditText editText = (EditText) findViewById(R.id.editTextNumber);
-            String string = editText.getText().toString();
-            System.out.println(string);
-            nodo.setText(string+"\n ----------\n"+ pasado+" XOR 0");
             nodo.setGravity(Gravity.CENTER);
             nodo.setBackgroundResource(R.drawable.rectangle);
             nodo.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             futuro = string;
             lista.add(nodo);
+            listaflecha.add(flecha);
+            listaflecha.get(cont).setImageAlpha(255);
             lista.get(cont++).setText(pasado+"\n ----------\n"+ pasado2+" XOR "+futuro);
             pasado2 = pasado;
             pasado = string;
-            listaView.addView(nodo);
         }
+        listaView.addView(nodo);
+        listaView.addView(flecha);
+
 
     }
 }
